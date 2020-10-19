@@ -3,8 +3,8 @@ $msg = "";
 if (isset($_POST['submit'])){
     $con = new mysqli("localhost",'root','','registers');
 
-    $email = $con->prepare($_POST['email']);
-    $password = $con->prepare($_POST['password']);
+    $email = $con->real_escape_string($_POST['email']);
+    $password = $con->real_escape_string($_POST['password']);
 
     $sql = $con->query("SELECT id, password FROM user WHERE email='$email'");
     if ($sql->num_rows > 0){
